@@ -21,8 +21,21 @@ export function check_coockie() {
 	if (cookie) {
 		const certificates = JSON.parse(cookie);
 
-		if (certificates.user && certificates.pass)
-			login(certificates.user, certificates.pass)
+		const { user, pass } = certificates;
+
+		if (user && pass) {
+
+			login(user, pass);
+
+			yemot_api
+				.get_incoming_calls()
+				.then(() => {
+					user_store.set({ is_login: true, user, pass });
+				})
+				.catch((reason) => {
+					error_element = reason.toString();
+				});
+		}
 	}
 }
 

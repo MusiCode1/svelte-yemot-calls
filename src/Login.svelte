@@ -1,6 +1,7 @@
 <script>
 	import { login, user_store, yemot_api } from "./user";
-	let user, pass, error;
+
+	let user, pass, error_element;
 
 	function handleSubmit() {
 		login(user, pass);
@@ -11,7 +12,7 @@
 				user_store.set({ is_login: true, user, pass });
 			})
 			.catch((reason) => {
-				error = reason.toString();
+				error_element = reason.toString();
 			});
 	}
 </script>
@@ -19,10 +20,10 @@
 <form on:submit|preventDefault={handleSubmit}>
 	<h1>📞</h1>
 
-	{#if error}
+	{#if error_element}
 		<div class="error">
 			<p>
-				{error}
+				{error_element}
 			</p>
 		</div>
 	{/if}
