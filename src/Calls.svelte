@@ -1,6 +1,6 @@
 <script>
 	import { yemot_api, user_store } from "./user";
-	let calls = 0;
+	let calls = 0, interval;
 
 	async function get_calls() {
 		const response = await yemot_api.get_incoming_calls();
@@ -14,9 +14,10 @@
 
 	function logout() {
 		$user_store.is_login = false;
+		clearInterval(interval);
 	}
 
-	setInterval(set_calls, 1000);
+	interval = setInterval(set_calls, 1000);
 </script>
 
 <div class="modal">
