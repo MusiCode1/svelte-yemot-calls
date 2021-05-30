@@ -1,5 +1,6 @@
 import { writable } from "svelte/store"
 import Yemot_api from "yemot-api"
+import cookies from "js-cookie"
 
 export const user_store = writable({
 	is_login: false,
@@ -15,11 +16,13 @@ export function login(user, pass) {
 
 export function check_coockie() {
 
-	if (document.cookie) {
-		const cookie = JSON.parse(document.cookie);
+	const cookie = cookies.get("certificates");
 
-		if (cookie.user && cookie.pass)
-			login(cookie.user, cookie.pass)
+	if (cookie) {
+		const certificates = JSON.parse(cookie);
+
+		if (certificates.user && certificates.pass)
+			login(certificates.user, certificates.pass)
 	}
 }
 
@@ -31,13 +34,14 @@ user_store.subscribe((value) => {
 			pass: value.pass,
 		});
 
-		document.cookie = json;
+		cookies.set("certificates", json);
+
+		document.cookie = `certificates=${json}; SameSite=None; Secure`;
 
 	} else {
 		if (value.user && value.pass) {
 			value.user = value.pass = "";
-			document.cookie = "{}";
+			cookies.set("certificates", "{}");
 		}
-
 	}
 });
