@@ -49,12 +49,10 @@ user_store.subscribe((value) => {
 
 		cookies.set("certificates", json);
 
-		document.cookie = `certificates=${json}; SameSite=None; Secure`;
-
 	} else {
 		if (value.user && value.pass) {
 			value.user = value.pass = "";
-			cookies.set("certificates", "{}");
+			cookies.set("certificates", "");
 		}
 	}
 });
