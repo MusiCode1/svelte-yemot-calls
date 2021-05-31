@@ -1,6 +1,6 @@
 <script>
 	import { yemot_api, user_store } from "./user";
-	let calls = 0, interval;
+	let calls = -1, interval;
 
 	async function get_calls() {
 		const response = await yemot_api.get_incoming_calls();
@@ -29,7 +29,7 @@
 			בטעינה...
 		{/if}
 	</p>
-	{#if calls}
+	{#if calls>-1}
 		<h2>
 			{calls}
 		</h2>
