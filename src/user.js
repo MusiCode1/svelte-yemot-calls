@@ -51,8 +51,10 @@ user_store.subscribe((value) => {
 
 	} else {
 		if (value.user && value.pass) {
+			yemot_api.logout();
 			value.user = value.pass = "";
 			cookies.set("certificates", "");
+
 		}
 	}
 });

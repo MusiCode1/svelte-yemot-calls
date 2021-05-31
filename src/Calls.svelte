@@ -21,7 +21,7 @@
 	interval = setInterval(set_calls, 1000);
 </script>
 
-<div class="modal">
+<div class="window">
 	<h1>סך השיחות למערכת:</h1>
 	<p>
 		{#if calls > -1}
@@ -39,18 +39,18 @@
 </div>
 
 <style>
-	.modal {
-		background-color: #fefefe;
+	.window {
+		background-color: #fcffea;
 		padding: 50px;
 		border: 1px solid #888;
-		width: 350px;
 		text-align: center;
-		box-shadow: 0px 0px 14px 0px #a2a2a2;
+		box-shadow: 0px 0px 14px 0px rgb(0 0 0 / 58%);
+		transition: all 300ms ease-in-out;
 	}
 
-	.modal:hover {
-		background-color: #eaeaea;
-		box-shadow: 0px 0px 18px 4px #a2a2a2;
+	.window:hover {
+		background-color: #ffffff;
+		box-shadow: 0px 0px 20px 15px rgb(0 0 0 / 58%);
 	}
 
 	button {

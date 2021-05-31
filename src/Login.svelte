@@ -17,7 +17,7 @@
 	}
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
+<form on:submit|preventDefault={handleSubmit} class="window">
 	<h1>📞</h1>
 
 	{#if error_element}
@@ -44,16 +44,22 @@
 
 <style>
 	form {
-		border: 1px solid #888;
-		background: #fff;
-		padding: 50px;
-		width: 250px;
-		height: 400px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
-		box-shadow: 0px 20px 14px 8px rgba(0, 0, 0, 0.58);
+	}
+
+	.window {
+		background-color: #ffffff;
+		padding: 50px;
+		border: 1px solid #888;
+		text-align: center;
+		box-shadow: 0px 0px 14px 0px rgb(0 0 0 / 58%);
+		transition: all 300ms ease-in-out;
+	}
+
+	.window:hover {
+		box-shadow: 0px 0px 20px 15px rgb(0 0 0 / 58%);
 	}
 
 	label {
